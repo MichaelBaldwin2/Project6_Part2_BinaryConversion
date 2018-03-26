@@ -17,9 +17,11 @@ public static void main(String[] args) {
             return;
         }
         if (isValid(binaryString))
-            JOptionPane.showMessageDialog(null, "Conversion to decimal: " + binaryToDecimal(binaryString));
+            JOptionPane.showMessageDialog(null, "Conversion to decimal: " +
+                    binaryToDecimal(binaryString));
         else
-            JOptionPane.showMessageDialog(null, "Invalid binary number! Please re-enter.");
+            JOptionPane.showMessageDialog(null,
+                    "Invalid binary number! Please re-enter.");
     }
 }
 
