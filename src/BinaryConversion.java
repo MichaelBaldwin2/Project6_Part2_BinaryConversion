@@ -1,22 +1,31 @@
-import java.util.Scanner;
+import javax.swing.*;
 
 public class BinaryConversion {
+// Written by: Mike Baldwin
+// Project 6 - Part 2 - Binary Conversion
+// This program reads in a sequence of binary strings
+// and converts each one to a decimal integer.
+
 public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    String binaryString = "0";
+    String binaryString;
+    binaryString = "0";
 
     while (Integer.parseInt(binaryString) != -1) {
-        binaryString = scanner.next();
-        if (isValid(binaryString)) {
-            System.out.println("Conversion to decimal: " + binaryToDecimal(binaryString));
+        binaryString = JOptionPane.showInputDialog("Enter a binary number:");
+        if (Integer.parseInt(binaryString) == -1) {
+            JOptionPane.showMessageDialog(null, "All set!");
+            return;
         }
+        if (isValid(binaryString))
+            JOptionPane.showMessageDialog(null, "Conversion to decimal: " + binaryToDecimal(binaryString));
+        else
+            JOptionPane.showMessageDialog(null, "Invalid binary number! Please re-enter.");
     }
 }
 
-public static boolean isValid(String binString) {
+private static boolean isValid(String binString) {
     if (binString.length() == 0)
         return false;
-
     for (char iChar : binString.toCharArray())
         if (!(iChar == '0' || iChar == '1'))
             return false;
@@ -24,8 +33,11 @@ public static boolean isValid(String binString) {
     return true;
 }
 
-public static int binaryToDecimal(String binaryString) {
-    int decValue = 0;
-
+private static int binaryToDecimal(String binStr) {
+    int decValue;
+    decValue = 0;
+    for (int i = 0, j = binStr.length() - 1; i < binStr.length(); i++, j--)
+        decValue += (binStr.charAt(i) == '0' ? 0 : 1) * Math.pow(2, j);
+    return decValue;
 }
 }
